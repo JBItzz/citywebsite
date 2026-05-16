@@ -29,9 +29,9 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#111111] text-white flex flex-col items-center justify-center font-sans">
+    <div className="min-h-screen bg-[#111111] text-white flex flex-col items-center justify-center font-sans p-6">
       {/* Container Card */}
-      <div className="max-w-2xl text-center px-6 py-12 border border-zinc-800 rounded-lg bg-zinc-900/50 backdrop-blur">
+      <div className="w-full max-w-2xl text-center px-6 py-12 border border-zinc-800 rounded-lg bg-zinc-900/50 backdrop-blur mb-6">
         <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl text-[#C5A021] mb-4">
           Mayor's Office
         </h1>
@@ -41,6 +41,24 @@ export default function App() {
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-800/80 text-sm text-zinc-300 border border-zinc-700">
           <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
           Systems Operational
+        </div>
+      </div>
+
+      {/* Leadership & Members Section */}
+      <div className="w-full max-w-2xl border border-zinc-800 rounded-lg bg-zinc-900/30 p-6 text-center">
+        <h2 className="text-xl font-bold text-zinc-300 uppercase tracking-wider mb-4">
+          Roster & Administration
+        </h2>
+        <div className="grid grid-cols-1 gap-4">
+          {/* Member Card */}
+          <div className="flex flex-col sm:flex-row items-center justify-between p-4 rounded-md bg-zinc-900/80 border border-zinc-800">
+            <span className="text-[#C5A021] font-mono tracking-wide text-sm font-bold uppercase">
+              Chief of Staff
+            </span>
+            <span className="text-zinc-200 font-semibold text-lg mt-1 sm:mt-0">
+              ARCTIC
+            </span>
+          </div>
         </div>
       </div>
 
