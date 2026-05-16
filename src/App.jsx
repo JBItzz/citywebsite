@@ -32,6 +32,15 @@ export default function App() {
       {/* Main Container Card */}
       <div className="w-full max-w-2xl border border-zinc-800 rounded-lg bg-zinc-900/50 backdrop-blur p-8 sm:p-12 text-center">
         
+        {/* Mayor's Office Logo */}
+        <div className="flex justify-center mb-6">
+          <img 
+            src="https://via.placeholder.com/120" // <-- REPLACE WITH MAYOR LOGO LINK
+            alt="Mayor's Office Logo" 
+            className="w-28 h-28 object-contain rounded-full border-2 border-[#C5A021] p-1 bg-zinc-900"
+          />
+        </div>
+
         {/* Header Block */}
         <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl text-[#C5A021] mb-2">
           Mayor's Office
@@ -77,20 +86,30 @@ export default function App() {
           </h2>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto">
-            {/* LAPD Link */}
+            {/* LAPD Link & Logo */}
             <a 
               href="#" 
-              className="p-4 rounded-md bg-zinc-900/80 border border-zinc-800 hover:border-[#C5A021] transition group"
+              className="p-4 rounded-md bg-zinc-900/80 border border-zinc-800 hover:border-[#C5A021] transition group flex flex-col items-center"
             >
+              <img 
+                src="https://via.placeholder.com/60" // <-- REPLACE WITH LAPD LOGO LINK
+                alt="LAPD Logo" 
+                className="w-16 h-16 object-contain mb-3"
+              />
               <h3 className="text-lg font-bold text-zinc-200 group-hover:text-[#C5A021] transition">LAPD</h3>
               <p className="text-xs text-zinc-500 mt-1">Los Angeles Police Department</p>
             </a>
 
-            {/* LASD Link */}
+            {/* LASD Link & Logo */}
             <a 
               href="#" 
-              className="p-4 rounded-md bg-zinc-900/80 border border-zinc-800 hover:border-[#C5A021] transition group"
+              className="p-4 rounded-md bg-zinc-900/80 border border-zinc-800 hover:border-[#C5A021] transition group flex flex-col items-center"
             >
+              <img 
+                src="https://via.placeholder.com/60" // <-- REPLACE WITH LASD LOGO LINK
+                alt="LASD Logo" 
+                className="w-16 h-16 object-contain mb-3"
+              />
               <h3 className="text-lg font-bold text-zinc-200 group-hover:text-[#C5A021] transition">LASD</h3>
               <p className="text-xs text-zinc-500 mt-1">Los Angeles Sheriff's Department</p>
             </a>
