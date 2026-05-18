@@ -23,7 +23,7 @@ export default function App() {
           { name: "Platform", value: "`Live Portal`", inline: true },
           { name: "Link", value: "[Open Site](https://lacomm-mayorsoffice.vercel.app/)", inline: true }
         ],
-        footer: { text: "ITZZ Systems • Traffic Monitor" },
+        footer: { text: "KINGSMAN Systems • Traffic Monitor" },
         timestamp: new Date().toISOString()
       }]
     };
@@ -141,7 +141,7 @@ export default function App() {
             </a>
           </div>
 
-          {/* New FBI Category Button */}
+          {/* FBI Category Button */}
           <button 
             onClick={() => setFbiOpen(true)}
             className="w-full max-w-md p-4 rounded-md bg-zinc-900/80 border border-zinc-800 hover:border-white transition flex flex-col items-center mx-auto"
@@ -170,8 +170,17 @@ export default function App() {
               [ ESCAPE_PORTAL ]
             </button>
 
+            {/* FBI Logo Placement */}
+            <div className="flex justify-center mb-4">
+              <img 
+                src="/fbi.png" 
+                alt="FBI Seal" 
+                className="w-24 h-24 object-contain filter grayscale brightness-200"
+              />
+            </div>
+
             {/* Tactical Department Header */}
-            <div className="mb-6 font-mono tracking-widest text-zinc-500 text-xs uppercase">
+            <div className="mb-4 font-mono tracking-widest text-zinc-500 text-xs uppercase">
               // CLASSIFIED // INTERNAL SECURITY DIRECTORY
             </div>
             
@@ -211,7 +220,7 @@ export default function App() {
             <hr className="border-zinc-800 my-6" />
             
             <div className="text-[10px] font-mono text-zinc-600 tracking-widest uppercase">
-              DATA SECURED BY ITZZ SYSTEMS &bull; ANTI-LEAK ARCHITECTURE
+              DATA SECURED BY KINGSMAN SIGNATURES &bull; ANTI-LEAK ARCHITECTURE
             </div>
           </div>
         </div>
@@ -219,7 +228,7 @@ export default function App() {
 
       {/* Footer */}
       <footer className="mt-8 text-xs text-zinc-600 tracking-wider uppercase">
-        Portal Developed by itzz JB &bull; ITZZ Systems
+        Portal Developed by itzz JB &bull; KINGSMAN Systems
       </footer>
     </div>
   );
