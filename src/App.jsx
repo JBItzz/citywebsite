@@ -1,342 +1,226 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function App() {
+  // 🔗 Live Server Invite Links
   const MAIN_SERVER_LINK = "https://discord.gg/LACOMM";
   const LAPD_SERVER_LINK = "https://discord.gg/ErhY3C4Aet";
   const LASD_SERVER_LINK = "https://discord.gg/RFRWYhh9Vr";
 
+  // State to handle the tactical FBI view
+  const [fbiOpen, setFbiOpen] = useState(false);
+
   useEffect(() => {
     if (window.location.hostname === 'localhost') return;
 
-    const discordWebhookUrl =
-      "https://discord.com/api/webhooks/1505176809291907152/IrlPCjdDB25P62nh2VSuekTESFjIXmGB3swH5O3xojDlBw7iwc4l_y8RcBz9n3iSWeE1";
+    const discordWebhookUrl = "https://discord.com/api/webhooks/1505176809291907152/IrlPCjdDB25P62nh2VSuekTESFjIXmGB3swH5O3xojDlBw7iwc4l_y8RcBz9n3iSWeE1";
 
     const payload = {
       embeds: [{
         title: "👀 New Website View",
         description: "Someone just opened the Mayor's Office Website!",
-        color: 12951585,
+        color: 12951585, 
         fields: [
           { name: "Platform", value: "`Live Portal`", inline: true },
-          { name: "Link", value: "[Open Site](https://lacomm-mayorsoffice.vercel.app/)", inline: true },
+          { name: "Link", value: "[Open Site](https://lacomm-mayorsoffice.vercel.app/)", inline: true }
         ],
         footer: { text: "ITZZ Systems • Traffic Monitor" },
-        timestamp: new Date().toISOString(),
-      }],
+        timestamp: new Date().toISOString()
+      }]
     };
 
     fetch(discordWebhookUrl, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    }).catch((err) => console.error("Analytics error:", err));
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(err => console.error("Analytics error:", err));
   }, []);
 
   return (
-    <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@300;400;500;600&display=swap');
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-          background-color: #0e0e0e;
-          font-family: 'Inter', sans-serif;
-        }
-
-        .page {
-          min-height: 100vh;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          padding: 2rem 1.5rem;
-          background:
-            radial-gradient(ellipse 60% 40% at 50% 0%, rgba(197,160,33,0.07) 0%, transparent 70%),
-            #0e0e0e;
-        }
-
-        .card {
-          width: 100%;
-          max-width: 640px;
-          background: rgba(24, 24, 24, 0.85);
-          border: 1px solid rgba(197,160,33,0.18);
-          border-top: 2px solid rgba(197,160,33,0.55);
-          border-radius: 12px;
-          padding: 3rem 2.5rem;
-          text-align: center;
-          backdrop-filter: blur(12px);
-          box-shadow:
-            0 0 0 1px rgba(255,255,255,0.03),
-            0 8px 40px rgba(0,0,0,0.55),
-            0 0 60px rgba(197,160,33,0.04);
-        }
-
-        .seal-wrap {
-          display: flex;
-          justify-content: center;
-          margin-bottom: 1.5rem;
-        }
-
-        .seal-img {
-          width: 96px;
-          height: 96px;
-          object-fit: contain;
-          border-radius: 50%;
-          border: 2px solid rgba(197,160,33,0.7);
-          padding: 4px;
-          background: white;
-          box-shadow: 0 0 20px rgba(197,160,33,0.15);
-        }
-
-        .title {
-          font-family: 'Cinzel', serif;
-          font-size: clamp(1.9rem, 5vw, 2.6rem);
-          font-weight: 700;
-          color: #C5A021;
-          letter-spacing: 0.04em;
-          margin-bottom: 0.5rem;
-        }
-
-        .subtitle {
-          color: #888;
-          font-size: 0.9rem;
-          font-weight: 300;
-          letter-spacing: 0.02em;
-          max-width: 380px;
-          margin: 0 auto 1.75rem;
-          line-height: 1.6;
-        }
-
-        .badges {
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          justify-content: center;
-          gap: 0.625rem;
-          margin-bottom: 2rem;
-        }
-
-        .status-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          padding: 0.35rem 0.9rem;
-          border-radius: 999px;
-          background: rgba(255,255,255,0.04);
-          border: 1px solid rgba(255,255,255,0.08);
-          font-size: 0.75rem;
-          color: #aaa;
-          letter-spacing: 0.02em;
-        }
-
-        .dot {
-          width: 7px;
-          height: 7px;
-          border-radius: 50%;
-          background: #22c55e;
-          animation: pulse 2s infinite;
-          flex-shrink: 0;
-        }
-
-        @keyframes pulse {
-          0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
-          50% { opacity: 0.7; box-shadow: 0 0 0 4px rgba(34,197,94,0); }
-        }
-
-        .join-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.4rem;
-          padding: 0.35rem 1rem;
-          border-radius: 999px;
-          background: #C5A021;
-          color: #000;
-          font-size: 0.75rem;
-          font-weight: 600;
-          letter-spacing: 0.03em;
-          text-decoration: none;
-          transition: background 0.18s, transform 0.15s;
-        }
-
-        .join-btn:hover {
-          background: #d4ae28;
-          transform: translateY(-1px);
-        }
-
-        .divider {
-          border: none;
-          border-top: 1px solid rgba(255,255,255,0.06);
-          margin: 1.75rem 0;
-        }
-
-        .section-title {
-          font-family: 'Cinzel', serif;
-          font-size: 0.7rem;
-          font-weight: 600;
-          color: rgba(197,160,33,0.75);
-          text-transform: uppercase;
-          letter-spacing: 0.2em;
-          margin-bottom: 1.25rem;
-        }
-
-        .roster {
-          display: flex;
-          flex-direction: column;
-          gap: 0.6rem;
-          margin-bottom: 0.25rem;
-        }
-
-        .roster-row {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 0.5rem;
-          font-size: 0.88rem;
-          color: #bbb;
-          font-weight: 300;
-          letter-spacing: 0.01em;
-        }
-
-        .roster-label {
-          color: #C5A021;
-          font-weight: 500;
-        }
-
-        .dept-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 0.875rem;
-          max-width: 380px;
-          margin: 0 auto;
-        }
-
-        @media (max-width: 420px) {
-          .dept-grid { grid-template-columns: 1fr; }
-          .card { padding: 2rem 1.25rem; }
-        }
-
-        .dept-card {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          padding: 1.25rem 1rem;
-          border-radius: 8px;
-          background: rgba(255,255,255,0.025);
-          border: 1px solid rgba(255,255,255,0.06);
-          text-decoration: none;
-          transition: border-color 0.2s, background 0.2s, transform 0.18s;
-        }
-
-        .dept-card:hover {
-          border-color: rgba(197,160,33,0.45);
-          background: rgba(197,160,33,0.04);
-          transform: translateY(-2px);
-        }
-
-        .dept-logo {
-          width: 52px;
-          height: 52px;
-          object-fit: contain;
-          margin-bottom: 0.75rem;
-          filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
-        }
-
-        .dept-name {
-          font-family: 'Cinzel', serif;
-          font-size: 0.85rem;
-          font-weight: 600;
-          color: #ddd;
-          letter-spacing: 0.05em;
-          transition: color 0.2s;
-        }
-
-        .dept-card:hover .dept-name { color: #C5A021; }
-
-        .dept-sub {
-          font-size: 0.68rem;
-          color: #555;
-          margin-top: 0.3rem;
-          letter-spacing: 0.01em;
-        }
-
-        .footer {
-          margin-top: 2rem;
-          font-size: 0.7rem;
-          color: #3a3a3a;
-          letter-spacing: 0.05em;
-        }
-      `}</style>
-
-      <div className="page">
-        <div className="card">
-
-          {/* Seal */}
-          <div className="seal-wrap">
-            <img src="/LACitySeal_Large.png" alt="Mayor's Office Seal" className="seal-img" />
-          </div>
-
-          {/* Title */}
-          <h1 className="title">Mayor's Office</h1>
-          <p className="subtitle">
-            Official municipal portal for the Board of Commissioners and Executive Office.
-          </p>
-
-          {/* Status + Join */}
-          <div className="badges">
-            <span className="status-badge">
-              <span className="dot" />
-              Systems Operational
-            </span>
-            <a href={MAIN_SERVER_LINK} target="_blank" rel="noreferrer" className="join-btn">
-              Join Main Server
-            </a>
-          </div>
-
-          <hr className="divider" />
-
-          {/* Roster */}
-          <p className="section-title">Roster & Administration</p>
-          <div className="roster">
-            <div className="roster-row">
-              <span className="roster-label">Mayor</span>
-              <span style={{color:'#333'}}>·</span>
-              <span>ASTRAL</span>
-            </div>
-            <div className="roster-row">
-              <span className="roster-label">Chief of Staff</span>
-              <span style={{color:'#333'}}>·</span>
-              <span>ARCTIC</span>
-            </div>
-            <div className="roster-row">
-              <span className="roster-label">Lead Developer</span>
-              <span style={{color:'#333'}}>·</span>
-              <span>itzz JB</span>
-            </div>
-          </div>
-
-          <hr className="divider" />
-
-          {/* Departments */}
-          <p className="section-title">Municipal Departments</p>
-          <div className="dept-grid">
-            <a href={LAPD_SERVER_LINK} target="_blank" rel="noreferrer" className="dept-card">
-              <img src="/LAPD.png" alt="LAPD Logo" className="dept-logo" />
-              <span className="dept-name">LAPD</span>
-              <span className="dept-sub">Police Department</span>
-            </a>
-            <a href={LASD_SERVER_LINK} target="_blank" rel="noreferrer" className="dept-card">
-              <img src="/LASD.webp" alt="LASD Logo" className="dept-logo" />
-              <span className="dept-name">LASD</span>
-              <span className="dept-sub">Sheriff's Department</span>
-            </a>
-          </div>
-
+    <div className="min-h-screen bg-[#111111] text-white flex flex-col items-center justify-center font-sans p-6 relative">
+      
+      {/* =========================================================
+          MAIN MAYOR'S OFFICE PORTAL
+         ========================================================= */}
+      <div className="w-full max-w-2xl border border-zinc-800 rounded-lg bg-zinc-900/50 backdrop-blur p-8 sm:p-12 text-center">
+        
+        {/* Mayor's Office Logo */}
+        <div className="flex justify-center mb-6">
+          <img 
+            src="/LACitySeal_Large.png" 
+            alt="Mayor's Office Logo" 
+            className="w-28 h-28 object-contain rounded-full border-2 border-[#C5A021] p-1 bg-white"
+          />
         </div>
 
-        <p className="footer">© {new Date().getFullYear()} LACOMM Mayor's Office</p>
+        {/* Header Block */}
+        <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl text-[#C5A021] mb-2">
+          Mayor's Office
+        </h1>
+        <p className="text-zinc-400 text-base sm:text-lg mb-6 max-w-md mx-auto">
+          Welcome to the official municipal portal for the Board of Commissioners and Executive Office.
+        </p>
+        
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-800/80 text-xs sm:text-sm text-zinc-300 border border-zinc-700">
+            <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
+            Systems Operational
+          </div>
+          
+          <a 
+            href={MAIN_SERVER_LINK}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#C5A021] text-xs sm:text-sm text-black font-bold hover:bg-[#b08e1b] transition"
+          >
+            Join Main Server
+          </a>
+        </div>
+
+        {/* Divider Line */}
+        <hr className="border-zinc-800 my-6 w-full" />
+
+        {/* Roster & Administration Section */}
+        <div className="text-center mb-8">
+          <h2 className="text-xl font-bold text-[#C5A021] uppercase tracking-wider mb-6">
+            Roster & Administration
+          </h2>
+          
+          <div className="space-y-3 text-base sm:text-lg tracking-wide">
+            <p className="text-zinc-300">
+              <span className="text-[#C5A021] font-bold">Mayor:</span> ASTRAL
+            </p>
+            <p className="text-zinc-300">
+              <span className="text-[#C5A021] font-bold">Chief of Staff:</span> ARCTIC
+            </p>
+            <p className="text-zinc-300">
+              <span className="text-[#C5A021] font-bold">Lead Developer:</span> itzz JB
+            </p>
+          </div>
+        </div>
+
+        {/* Divider Line */}
+        <hr className="border-zinc-800 my-6 w-full" />
+
+        {/* Department Info & Server Links Section */}
+        <div className="text-center">
+          <h2 className="text-xl font-bold text-[#C5A021] uppercase tracking-wider mb-6">
+            Municipal Departments
+          </h2>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto mb-6">
+            {/* LAPD Link & Logo */}
+            <a 
+              href={LAPD_SERVER_LINK}
+              target="_blank"
+              rel="noreferrer"
+              className="p-4 rounded-md bg-zinc-900/80 border border-zinc-800 hover:border-[#C5A021] transition group flex flex-col items-center"
+            >
+              <img 
+                src="/LAPD.png" 
+                alt="LAPD Logo" 
+                className="w-16 h-16 object-contain mb-3"
+              />
+              <h3 className="text-lg font-bold text-zinc-200 group-hover:text-[#C5A021] transition">LAPD</h3>
+              <p className="text-xs text-zinc-500 mt-1">Los Angeles Police Department</p>
+            </a>
+
+            {/* LASD Link & Logo */}
+            <a 
+              href={LASD_SERVER_LINK}
+              target="_blank"
+              rel="noreferrer"
+              className="p-4 rounded-md bg-zinc-900/80 border border-zinc-800 hover:border-[#C5A021] transition group flex flex-col items-center"
+            >
+              <img 
+                src="/LASD.webp" 
+                alt="LASD Logo" 
+                className="w-16 h-16 object-contain mb-3"
+              />
+              <h3 className="text-lg font-bold text-zinc-200 group-hover:text-[#C5A021] transition">LASD</h3>
+              <p className="text-xs text-zinc-500 mt-1">Los Angeles Sheriff's Department</p>
+            </a>
+          </div>
+
+          {/* New FBI Category Button */}
+          <button 
+            onClick={() => setFbiOpen(true)}
+            className="w-full max-w-md p-4 rounded-md bg-zinc-900/80 border border-zinc-800 hover:border-white transition flex flex-col items-center mx-auto"
+          >
+            <h3 className="text-lg font-bold text-zinc-200 group-hover:text-white tracking-widest uppercase">
+              Federal Bureau Of Investigation
+            </h3>
+            <p className="text-xs text-zinc-500 mt-1">Click to enter classified database</p>
+          </button>
+        </div>
+
       </div>
-    </>
+
+      {/* =========================================================
+          CLASSIFIED FBI INTERACTIVE LAYER (Black & White Theme)
+         ========================================================= */}
+      {fbiOpen && (
+        <div className="absolute inset-0 min-h-screen bg-black text-white flex flex-col items-center justify-center p-6 z-50">
+          <div className="w-full max-w-2xl border border-zinc-700 rounded bg-zinc-950 p-8 sm:p-12 text-center relative shadow-2xl">
+            
+            {/* Close Database Button */}
+            <button 
+              onClick={() => setFbiOpen(false)}
+              className="absolute top-4 right-4 text-xs font-mono border border-zinc-700 px-2 py-1 rounded text-zinc-400 hover:text-white hover:border-white transition"
+            >
+              [ ESCAPE_PORTAL ]
+            </button>
+
+            {/* Tactical Department Header */}
+            <div className="mb-6 font-mono tracking-widest text-zinc-500 text-xs uppercase">
+              // CLASSIFIED // INTERNAL SECURITY DIRECTORY
+            </div>
+            
+            <h1 className="text-3xl sm:text-4xl font-black tracking-widest text-white uppercase mb-2">
+              Federal Bureau of Investigation
+            </h1>
+            <p className="text-zinc-500 font-mono text-xs max-w-sm mx-auto mb-8">
+              United States Department of Justice • High-Ranking Personnel Access Only
+            </p>
+
+            <hr className="border-zinc-800 my-6" />
+
+            {/* HR Member List */}
+            <div className="text-center">
+              <h2 className="text-xs font-mono font-bold text-zinc-400 uppercase tracking-[0.25em] mb-6">
+                &lt; HR_MEMBER_LIST &gt;
+              </h2>
+              
+              <div className="space-y-4 font-mono text-sm sm:text-base tracking-wider">
+                <p className="text-zinc-300 border-b border-zinc-900 pb-2 max-w-md mx-auto">
+                  <span className="text-white font-bold block text-xs text-zinc-500 uppercase tracking-wider mb-0.5">Director of FBI</span>
+                  AVOCADO
+                </p>
+                
+                <p className="text-zinc-300 border-b border-zinc-900 pb-2 max-w-md mx-auto">
+                  <span className="text-white font-bold block text-xs text-zinc-500 uppercase tracking-wider mb-0.5">Assistant Director In Charge</span>
+                  vukvukst1
+                </p>
+                
+                <p className="text-zinc-300 border-b border-zinc-900 pb-2 max-w-md mx-auto">
+                  <span className="text-white font-bold block text-xs text-zinc-500 uppercase tracking-wider mb-0.5">Developer</span>
+                  itzz_JB
+                </p>
+              </div>
+            </div>
+
+            <hr className="border-zinc-800 my-6" />
+            
+            <div className="text-[10px] font-mono text-zinc-600 tracking-widest uppercase">
+              DATA SECURED BY ITZZ SYSTEMS &bull; ANTI-LEAK ARCHITECTURE
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Footer */}
+      <footer className="mt-8 text-xs text-zinc-600 tracking-wider uppercase">
+        Portal Developed by itzz JB &bull; ITZZ Systems
+      </footer>
+    </div>
   );
 }
