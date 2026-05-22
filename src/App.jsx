@@ -16,19 +16,29 @@ export default function Portfolio() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  return (
-    <div className={`font-sans antialiased min-h-screen relative pb-32 transition-colors duration-300 selection:bg-neutral-800
-      ${isDarkMode ? 'bg-[#121212] text-[#A3A3A3]' : 'bg-[#FAFAFA] text-[#525252]'}`}
-    >
-      {/* Top Authentic Dot Matrix Grid */}
-      <div className="absolute top-0 inset-x-0 h-28 pointer-events-none opacity-40 mix-blend-screen"
-        style={{
-          backgroundImage: `radial-gradient(circle, ${isDarkMode ? '#2c2c2c' : '#d4d4d4'} 2px, transparent 3px)`,
-          backgroundSize: '14px 14px'
-        }}
-      />
+  // The true pixelated matrix layout from your screen recording
+  const PixelMatrix = () => (
+    <div className="w-full h-12 overflow-hidden opacity-[0.15] grid grid-cols-[repeat(40,minmax(0,1fr))] gap-[5px] justify-center pointer-events-none select-none">
+      {Array.from({ length: 160 }).map((_, i) => (
+        <div 
+          key={i} 
+          className={`w-2 h-2 rounded-[2px] mx-auto transition-colors duration-200
+            ${isDarkMode ? 'bg-neutral-400' : 'bg-neutral-600'}`}
+        />
+      ))}
+    </div>
+  );
 
-      {/* Main Content Body */}
+  return (
+    <div className={`font-sans antialiased min-h-screen relative pb-36 transition-colors duration-300 selection:bg-neutral-800
+      ${isDarkMode ? 'bg-[#0c0c0c] text-[#A3A3A3]' : 'bg-[#FAFAFA] text-[#525252]'}`}
+    >
+      {/* Top Authentic Rounded-Square Grid Mask */}
+      <div className="absolute top-0 inset-x-0 pt-3 mask-gradient-to-b">
+        <PixelMatrix />
+      </div>
+
+      {/* Main Content Area */}
       <div className="max-w-md mx-auto px-6 pt-16 space-y-10 relative z-10">
         
         {/* Header Section */}
@@ -93,36 +103,36 @@ export default function Portfolio() {
         </div>
 
         {/* Contact CTA Section */}
-        <div className={`p-6 rounded-2xl border text-center space-y-4 transition-colors
-          ${isDarkMode ? 'bg-neutral-900/40 border-neutral-800' : 'bg-neutral-100 border-neutral-200'}`}
+        <div className={`rounded-2xl border text-center transition-colors overflow-hidden relative pt-6 pb-6 px-6 space-y-4
+          ${isDarkMode ? 'bg-neutral-950/40 border-neutral-800' : 'bg-neutral-100 border-neutral-200'}`}
         >
-          <div className="space-y-1">
-            <h3 className={`text-lg font-bold transition-colors ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Get in Touch</h3>
+          <div className="space-y-1 relative z-10">
+            <h3 className={`text-xl font-bold transition-colors ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>Get in Touch</h3>
             <p className="text-xs text-[#737373]">Want to get in touch? Just email me and I'll respond whenever I can.</p>
           </div>
-          <a 
-            href="mailto:winterzstudios@gmail.com"
-            className="inline-block w-full py-2.5 rounded-xl text-sm font-semibold transition-all bg-neutral-800 text-white hover:bg-neutral-700 active:scale-[0.99]"
-          >
-            Contact Me
-          </a>
+
+          <div className="relative z-10 px-4">
+            <a 
+              href="mailto:winterzstudios@gmail.com"
+              className="block w-full py-2.5 rounded-xl text-sm font-semibold transition-all bg-neutral-800 text-white hover:bg-neutral-700 active:scale-[0.99]"
+            >
+              Contact Me
+            </a>
+          </div>
+
+          {/* Bottom Custom Pixelated Panel Background Element */}
+          <div className="absolute bottom-0 inset-x-0 opacity-[0.4] pointer-events-none select-none">
+            <PixelMatrix />
+          </div>
         </div>
       </div>
 
-      {/* Bottom Authentic Dot Matrix Grid */}
-      <div className="absolute bottom-24 inset-x-0 h-28 pointer-events-none opacity-40 mix-blend-screen"
-        style={{
-          backgroundImage: `radial-gradient(circle, ${isDarkMode ? '#2c2c2c' : '#d4d4d4'} 2px, transparent 3px)`,
-          backgroundSize: '14px 14px'
-        }}
-      />
-
-      {/* Floating Application Dock */}
+      {/* Floating Control Dock */}
       <div className="fixed bottom-6 inset-x-0 flex justify-center z-50 px-4">
         <div className={`border backdrop-blur-xl px-4 py-3 rounded-full flex items-center gap-5 shadow-2xl transition-all duration-300
-          ${isDarkMode ? 'bg-[#1A1A1A]/90 border-neutral-800/80' : 'bg-white/90 border-neutral-200'}`}
+          ${isDarkMode ? 'bg-[#161616]/90 border-neutral-800/80' : 'bg-white/90 border-neutral-200'}`}
         >
-          {/* Home Button */}
+          {/* Home Scroll Button */}
           <button 
             onClick={scrollToTop}
             className={`transition-all p-2 rounded-full border active:scale-95
@@ -133,7 +143,7 @@ export default function Portfolio() {
             </svg>
           </button>
           
-          {/* Light / Dark Mode Toggle */}
+          {/* Theme Toggle Button */}
           <button 
             onClick={() => setIsDarkMode(!isDarkMode)}
             className={`transition-all p-2 rounded-full border active:scale-95
@@ -152,7 +162,7 @@ export default function Portfolio() {
 
           <div className={`w-[1px] h-5 ${isDarkMode ? 'bg-neutral-800' : 'bg-neutral-300'}`} />
 
-          {/* Discord */}
+          {/* Discord Profile Link */}
           <a 
             href="https://discord.com/users/1449065587895701575" 
             target="_blank" 
@@ -164,7 +174,7 @@ export default function Portfolio() {
             </svg>
           </a>
 
-          {/* GitHub */}
+          {/* GitHub Profile Link */}
           <a 
             href="https://github.com/JBItzz" 
             target="_blank" 
@@ -176,17 +186,17 @@ export default function Portfolio() {
             </svg>
           </a>
 
-          {/* Roblox */}
+          {/* Roblox Profile Link */}
           <a 
             href="https://www.roblox.com/users/2750965033/profile" 
             target="_blank" 
             rel="noreferrer" 
             className="p-1 flex items-center justify-center group"
           >
-            <div className={`w-5 h-5 rounded-xs transform rotate-12 flex items-center justify-center transition-colors
+            <div className={`w-5 h-5 rounded-[3px] transform rotate-12 flex items-center justify-center transition-colors
               ${isDarkMode ? 'bg-[#A3A3A3] group-hover:bg-white text-[#1A1A1A]' : 'bg-neutral-600 group-hover:bg-neutral-900 text-white'}`}
             >
-              <div className={`w-1.5 h-1.5 rounded-xs ${isDarkMode ? 'bg-[#1A1A1A]' : 'bg-neutral-100'}`} />
+              <div className={`w-1.5 h-1.5 rounded-[1px] ${isDarkMode ? 'bg-[#0c0c0c]' : 'bg-neutral-100'}`} />
             </div>
           </a>
         </div>
