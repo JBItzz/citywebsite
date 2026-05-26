@@ -5,15 +5,12 @@ export default function Portfolio() {
 
   // Synchronized with your latest active groups and roles
   const experiences = [
-    { company: "Federate", role: "Director", period: "October 2024 - Present", icon: "🔗" },
-    { company: "OMB Productions", role: "Recording Team", period: "March 2026 - Present", icon: "🎬" },
-    { company: "Sway", role: "Developer", period: "August 2025 - Present", icon: "🌌" },
-    { company: "ERLCX", role: "Developer", period: "January 2026 - Present", icon: "❌" },
-    { company: "Liberty Training Academy", role: "Developer", period: "August 2025 - Present", icon: "🚔" },
-    { company: "AnchorCAD", role: "Developer", period: "May 2026 - Current", icon: "📐" },
-    { company: "Central", role: "Developer", period: "May 2025 - March 2026", icon: "🧬" },
-    { company: "Northca Systems", role: "Developer", period: "July 2025 - May 2026", icon: "💻" },
-    { company: "JB Productions", role: "Founder", period: "Present", icon: "👔" },
+    { company: "JB Productions", role: "Founder", period: "Present", icon: "🎬" },
+    { company: "NetSentra", role: "Server Staff Lead", period: "Present", icon: "🛠️" },
+    { company: "JJC Gaming", role: "Production Team", period: "Present", icon: "🎮" },
+    { company: "BlueLine Productions", role: "Marketing & Visuals", period: "Present", icon: "📈" },
+    { company: "Colorado State Roleplay", role: "Developer & Staff", period: "Present", icon: "🌲" },
+    { company: "CLD", role: "Management", period: "Present", icon: "💼" },
   ];
 
   // Synchronized tech stack from your recording tags
