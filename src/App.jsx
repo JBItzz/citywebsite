@@ -403,4 +403,4 @@ return (
 
   </div>  
 );  
-}  Nothing changed. The names of the logos are same as u said
+}
