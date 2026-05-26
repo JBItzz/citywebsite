@@ -46,12 +46,6 @@ const experiences = [
     image: "cld.png" 
   },
 
-  { 
-    company: "NetSentra", 
-    role: "Enquiry Support Team", 
-    period: "Present", 
-    image: "netsentra.png" 
-  },
 ];
 const skills = [
 {
