@@ -4,12 +4,12 @@ export default function Portfolio() {
   const [isDarkMode, setIsDarkMode] = useState(true);
 
   const experiences = [
-    { company: "Merlin Productions", role: "Chief Foundership", period: "Present", icon: "🎬" },
-    { company: "Greater Manchester Roleplay", role: "Trainee Moderator", period: "Present", icon: "🇬🇧" },
-    { company: "NetSentra", role: "QA Tester & Server Staff Lead", period: "Present", icon: "🛠️" },
+    { company: "Aetham Productions", role: "Chief Foundership", period: "Present", icon: "🎬" },
+    { company: "Greater Manchester Roleplay", role: "Trial Moderator", period: "Present", icon: "🇬🇧" },
+    { company: "NetSentra", role: "QA Tester & Support Team Overseer", period: "Present", icon: "🛠️" },
     { company: "JJC Gaming", role: "Production Team", period: "Present", icon: "🎮" },
     { company: "BlueLine Productions", role: "Marketing & Visuals", period: "Present", icon: "📈" },
-    { company: "Colorado State Roleplay", role: "Developer & Staff", period: "Present", icon: "🌲" },
+    { company: "Colorado State Roleplay", role: "Management", period: "Present", icon: "🌲" },
     { company: "CLD", role: "Management", period: "Present", icon: "💼" },
   ];
 
@@ -95,7 +95,7 @@ export default function Portfolio() {
           </div>
 
           <h1 className={`text-3xl font-bold tracking-tight transition-colors ${isDarkMode ? 'text-white' : 'text-neutral-900'}`}>
-            Hi, I'm Merlin
+            Hi, I'm Aetham
           </h1>
 
           <p className="text-base leading-relaxed">
